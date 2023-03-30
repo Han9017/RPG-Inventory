@@ -1,5 +1,5 @@
 #------------------------------------------------------------------------------
-#    File name: Simple Map
+#    File name: RPG-Inventory
 #    Author: Han Wang
 #    Date created: 3/16/2023
 #    Date last modified: 3/26/2023
