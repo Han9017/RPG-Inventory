@@ -1,12 +1,12 @@
-#------------------------------------------------------------------------------
+#----------------------------------------------------------------------------
 #    File name: RPG-Inventory
 #    Author: Han Wang
 #    Date created: 3/16/2023
 #    Date last modified: 3/26/2023
 #    version 2
-#------------------------------------------------------------------------------
+#----------------------------------------------------------------------------
 '''   Description: Adventure Games'''
-#------------------------------------------------------------------------------
+#----------------------------------------------------------------------------
 #Create a variable "row" with a value of 0
 row = 0  
 col = 0
@@ -20,8 +20,11 @@ playing = True
 
 # tile information
 #Create a list called tile
-#The first assignment is "start", which means that tile[0] is "start", and so on
-tile = ["Start", "A swampy land", "A charred jungle", "Bloody Lake", "Demon Flower Field", "sacrificial altar", "broken church", "land of cracks"]
+#The first assignment is "start", which means that tile[0] is "start", 
+#and so on
+tile = ["Start", "A swampy land", "A charred jungle", "Bloody Lake", 
+        "Demon Flower Field", "sacrificial altar", "broken church",
+        "land of cracks"]
 tiles = {
   tile[0]: {
     "Description": "There's only despair here."
@@ -33,10 +36,12 @@ tiles = {
     "Description": "I believe this place used to be beautiful."
   },
   tile[3]: {
-    "Description": "My teacher said he once fished here, and he said the lake water here was clear and bottomless."
+    "Description": "My teacher said he once fished here, and he said the lake"
+    +" water here was clear and bottomless."
   },
   tile[4]: {
-    "Description": "Everything here makes me uneasy, why those flowers have a human face?."
+    "Description": "Everything here makes me uneasy, why those flowers have"
+    +" a human face?."
   },
   tile[5]: {
     "Description": "I can feel him here, the most evil being in this land."
@@ -50,19 +55,23 @@ tiles = {
 }
 #Description about objects "Holy Sword", "Holy Sword", and "Holy Armor".
 objects = {
-          "Holy Sword" : {"Description" : "You found a shining sword inserted in a stone. That should be the Holy Sword.",
+          "Holy Sword" : {"Description" : "You found a shining sword inserted"
+          +" in a stone. That should be the Holy Sword.",
                      "Status" : "in stone",
                      "Location": [2, 1], 
                      "Action" : ["take", "leave"],
                      "Requirement" : ["key", None, None]
                     },
-         "Holy Sword" : {"Description" : "You found a box, opened it, and found a very beautiful helmet.",
+         "Holy Sword" : {"Description" : "You found a box, opened it, and"
+         +" found a very beautiful helmet.",
                    "Status" : "in box",
                    "Location" : [0, 1],
                    "Action" : ["take", "leave"],
                    "Requirement" : [None, None]
                   },
-          "Holy Armor" : {"Description" : "You notice that there seems to be light in front of you, and after walking over, you find armor on the scorched ground.",
+          "Holy Armor" : {"Description" : "You notice that there seems to be" 
+          +" light in front of you, and after walking over, you find armor"
+          +" on the scorched ground.",
                    "Status" : "on ground",
                    "Location" : [3, 3],
                    "Action" : ["take", "leave"],
@@ -72,19 +81,22 @@ objects = {
           
 #Description about npc "Little Demon Legion", "Eric", and "Injured Old Man".
 npcs = {
-          "Little Demon Legion" : {"Description" : "Disgusting things, but it seems that I need some more lethal weapons to defeat them.",
+          "Little Demon Legion" : {"Description" : "Disgusting things, but it"
+          +" seems that I need some more lethal weapons to defeat them.",
                      "Status" : "screaming",
                      "Location": [4, 1], 
                      "Action" : ["fight", "leave"],
                      "Requirement" : [None, None]
                     },
-          "Eric" : {"Description" : "He has an evil energy, and that energy continues to grow.",
+          "Eric" : {"Description" : "He has an evil energy, and that energy"
+          +" continues to grow.",
                    "Status" : "in sky",
                    "Location" : [4, 4],
                    "Action" : ["fight", "leave"],
                    "Requirement" : [None, None]
                   }, 
-          "Injured Old Man" : {"Description" : "I can't believe there are still living humans here.",
+          "Injured Old Man" : {"Description" : "I can't believe there are" 
+          +" still living humans here.",
                    "Status" : "in room",
                    "Location" : [2, 0],
                    "Action" : ["talk", "leave"],
@@ -99,7 +111,7 @@ map = [[tile[0], tile[1], tile[2], tile[6]],
        [tile[3], tile[2], tile[1], tile[5]]]
 
 
-# Functions ------------------------------------------------------------------
+# Functions ----------------------------------------------------------
 def walkto():
   global playing, row, col, max_row, max_col
   orientating = playing
@@ -110,6 +122,7 @@ def walkto():
    canRight = False
    canLeft = False
 
+    
    if row > 0:
      canUp = True
      print("you can go up - type:'up'")
@@ -127,7 +140,8 @@ def walkto():
      print("you can go left - type:'left'")
    orientating = False
 
-#Create a variable called "waychoice" and assign it to user input (input(f"Choice: ")), then change the user input to lowercase (.lower())
+#Create a variable called "waychoice" and assign it to user input 
+#(input(f"Choice: ")), then change the user input to lowercase (.lower())
    waychoice = input("Choice: ").lower()
    if waychoice == "up" and canUp:
         row = row - 1 
@@ -186,7 +200,7 @@ def MainMenu():
     
     elif userInput == Choose[1]:
       print("You look around.")
-      #Function call-----------------------------------------------------------------------
+      #Function call----------------------------------------------------------
       Inspectplace1()
       Inspectnpc1()
     elif userInput == "quit":
@@ -197,13 +211,46 @@ def MainMenu():
 
       
 # Main -----------------------------------------------------------------------
-print("""Mission Overview (Background Story): You are a super soldier, teleported to the island occupied by Eric (Demon, Super Rebel). Eric was originally a normal person, but he seemed to have made a deal with the devil and gained very powerful power, and used this power to occupy Paradise Island in the Pacific Ocean. According to satellite intelligence, he seemed to be building an altar. 
+print("""Mission Overview (Background Story): You are a super soldier, 
+teleported to the island occupied by Eric (Demon, Super Rebel). Eric was
+originally a normal person, but he seemed to have made a deal with the devil
+and gained very powerful power, and used this power to occupy Paradise Island
+in the Pacific Ocean. According to satellite intelligence, he seemed to be 
+building an altar. 
 
-Theological experts believe that he does not currently have all the demon power, and he needs an altar to transmit all the demon power from hell to the real world. Therefore, the major powers of the world united and sent out troops in order to defeat them. Due to their belittling of the enemy, they initially used only conventional military forces, such as infantry, helicopters, and landing craft, to capture the island, but no one survived. 
+Theological experts believe that he does not currently have all the demon
+power, and he needs an altar to transmit all the demon power from hell to the
+real world. Therefore, the major powers of the world united and sent out 
+troops in order to defeat them. Due to their belittling of the enemy, they 
+initially used only conventional military forces, such as infantry, 
+helicopters, and landing craft, to capture the island, but no one survived. 
 
-At this time, people began to realize that even though Eric did not gain all the demon power, it was still more than enough to deal with ordinary mortals. Therefore, various countries began to use various advanced weapons, such as advanced fighter jets, a large number of cruise missiles, high-speed drones, hypersonic missiles, and even eventually intercontinental missiles with nuclear warheads. However, no matter how advanced and fast those weapons were, How intelligent and powerful they are, they are all blocked outside the island gate by Eric's magical shield created using demon power and the hell demon monsters he summons. At this time, the world felt panic, people became overwhelmed, and the world fell into chaos and despair. And you, perhaps the only person who can save this world, are the last follower of the guardian angel of heaven who stays on Earth to protect humanity. 
+At this time, people began to realize that even though Eric did not gain all
+the demon power, it was still more than enough to deal with ordinary mortals.
+Therefore, various countries began to use various advanced weapons, such as 
+advanced fighter jets, a large number of cruise missiles, high-speed drones,
+hypersonic missiles, and even eventually intercontinental missiles with 
+nuclear warheads. However, no matter how advanced and fast those weapons were,
+How intelligent and powerful they are, they are all blocked outside the island
+gate by Eric's magical shield created using demon power and the hell demon 
+monsters he summons. At this time, the world felt panic, people became 
+overwhelmed, and the world fell into chaos and despair. And you, perhaps
+the only person who can save this world, are the last follower of the 
+guardian angel of heaven who stays on Earth to protect humanity. 
 
-Looking at the expanding red fog outside the Paradise Island captured by satellites in the news, you are also very anxious, because you know that only magic can defeat magic, and those aircraft and missiles will not have any effect. You have read the books left by your ancestors and learned some knowledge about Paradise Island and the power of demons. Paradise Island was originally a place where angels were buried after the physical death of humans. Over time, a large amount of magical energy accumulated here, so Eric chose to build an altar here because opening the energy transfer door required a large amount of magical energy. And through learning, you understand that Eric obtained the authentic 'power of the agent of Satan', which cannot be harmed by ordinary magic weapons. He must gather together the 'Holy Sword', 'Holy Helmet', and 'Holy Armor' made in heaven to defeat him, and it happens that they are scattered all over the Island of Paradise.""")
+Looking at the expanding red fog outside the Paradise Island captured by
+satellites in the news, you are also very anxious, because you know that 
+only magic can defeat magic, and those aircraft and missiles will not have
+any effect. You have read the books left by your ancestors and learned some
+knowledge about Paradise Island and the power of demons. Paradise Island was 
+originally a place where angels were buried after the physical death of 
+humans. Over time, a large amount of magical energy accumulated here, so 
+Eric chose to build an altar here because opening the energy transfer door 
+required a large amount of magical energy. And through learning, you 
+understand that Eric obtained the authentic 'power of the agent of Satan', 
+which cannot be harmed by ordinary magic weapons. He must gather together the
+'Holy Sword', 'Holy Helmet', and 'Holy Armor' made in heaven to defeat him, 
+and it happens that they are scattered all over the Island of Paradise.""")
 print("Good luck!")
 
 while playing:
